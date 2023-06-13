@@ -7,6 +7,18 @@ require('dotenv').config({
   path: path.join(__dirname, '..', '..', '.var', '.env'),
 })
 
+// db connection
+const sequelize = require('./configs/db')
+const connectDB = async () => {
+  try {
+    await sequelize.authenticate()
+    console.log('Database connected')
+  } catch (error) {
+    console.log(error)
+  }
+}
+connectDB()
+
 // static files
 app.use(
   express.static(path.join(__dirname, '..', '..', '.public', 'serviceName'))
@@ -21,6 +33,15 @@ app.use(middlewares)
 // routes
 //-- the routes are defined here
 app.use('/api/status', require('./routes/status'))
+
+// db relations
+require('./configs/relations')
+
+// sync db
+sequelize.sync({
+  force: false,
+  alter: process.env.NODE_ENV === 'production' ? false : true,
+})
 
 // error handler
 const errorHandler = require('./middlewares/error')
