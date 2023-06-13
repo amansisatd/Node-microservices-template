@@ -1,0 +1,34 @@
+{
+  "name": "microservice_template",
+  "version": "0.0.1",
+  "description": "Reusable template for microservices",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "prod": "pm2 start src/server.js --name microservice-name",
+    "stop": "pm2 stop microservice-name",
+    "logs": "pm2 logs microservice-name",
+    "status": "pm2 status",
+    "restart": "pm2 restart microservice-name",
+    "delete": "pm2 delete microservice-name"
+  },
+  "keywords": [
+    "Microservices"
+  ],
+  "author": "Selaman Apps",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.8",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "gaxios": "^5.1.0",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
+    "rotating-file-stream": "^3.1.0",
+    "validator": "^13.9.0"
+  }
+}
